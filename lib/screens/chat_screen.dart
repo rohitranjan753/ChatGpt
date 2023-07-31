@@ -1,6 +1,7 @@
 import 'package:chatgptbot/constants/constant.dart';
 import 'package:chatgptbot/services/assets_manager.dart';
 import 'package:chatgptbot/widgets/chat_widget.dart';
+import 'package:chatgptbot/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -33,7 +34,25 @@ class _ChatScreenState extends State<ChatScreen> {
         appBar: AppBar(
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () async{
+                  await showModalBottomSheet(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20)
+                      )
+                    ),
+                      backgroundColor: scaffoldBackgroundColor,
+                      context: context, builder: (context){
+                    return Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        children: [
+                          const Flexible(child: TextWidget(label: "Chosen Model: ",fontSize: 16,))
+                        ],
+                      ),
+                    );
+                  });
+                },
                 icon: const Icon(
                   Icons.more_vert_rounded,
                   color: Colors.white,
